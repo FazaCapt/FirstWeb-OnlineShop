@@ -1,3 +1,5 @@
+// ******** Child Component
+
 import React, { Component } from 'react';
 
 class Child extends Component {

@@ -1,18 +1,30 @@
+// ******* Parent Component
+
 import React, { Component } from 'react'; // Import ini syarat dasar untuk membuat component
 import Child from './Child';
 import ChildProps from './ChildProps';
 
 
 class Mine extends Component { // Membuat class component
+    constructor(){
+        super()
+        this.state = {texts:[]}
+    }
     render() {
+        this.setState({texts:['Belajar ReactJS', 'Belajar NodeJS', 'Belajar ExpressJS']});
+
+        let texts = this.state.texts.map(function(text){
+            return (
+                <ChildProps text= {text} />
+            )
+        })
+
         return (
             <div>
                 <div id="mine">Welcome in My Website</div>
                 <div>Assalamualaikum</div>
                 <br />
-                <Child />                
-                <Child />            
-                <Child />
+                {texts}
                 <br />
                 {/* Cara menggunakan Props harus diisi textnya sesuai propsnya */}
                 <ChildProps text="Ini dibuat dengan PROPS, Supaya lebih dinamis" />
