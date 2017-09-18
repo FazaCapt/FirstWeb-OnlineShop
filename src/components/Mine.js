@@ -8,12 +8,13 @@ import ChildProps from './ChildProps';
 class Mine extends Component { // Membuat class component
     constructor(){
         super()
-        this.state = {texts:[], color:''} //Menambahkan state color supaya berubah warna
+        this.state = {texts:[], color:'', counter: 0} //Menambahkan state color supaya berubah warna
         this.changeColor = this.changeColor.bind(this); // Kalo kita membuat function custom maka secara default thisnya null, maka harus dibuat seperti ini.
+        this.counterClick = this.counterClick.bind(this);
     }
 
     componentDidMount() {
-        this.setState({texts:['Belajar ReactJS', 'Belajar NodeJS', 'Belajar ExpressJS'], color: 'green'});
+        this.setState({texts:['Belajar ReactJS', 'Belajar NodeJS', 'Belajar ExpressJS'], color: 'green'}); // Membuat state default
     }
 
     changeColor(){
@@ -23,13 +24,18 @@ class Mine extends Component { // Membuat class component
             this.setState({color:'green'})
         }
     }
+
+    counterClick(){
+        this.setState({counter: this.state.counter + 1}) // ini harus sama dengan state counter yang sudah di tentukan
+    }
+
     render() {
         
         let texts = this.state.texts.map(function(text){
             return (
-                <ChildProps text= {text} />
+                <ChildProps text= {text} counterClick= {this.counterClick} />
             )
-        })
+        }, this) // harus di tambahakan this, karena tanpa this ini akan bernilai null (Solusi pertama bila thisnya null), Kalo solisi kedua dengan menggunakan arrow function [pada text di map] (arrow => {})
 
         let style = {color: this.state.color} //menambahkan state color
 
@@ -44,6 +50,9 @@ class Mine extends Component { // Membuat class component
                 <ChildProps text="Ini dibuat dengan PROPS, Supaya lebih dinamis" />
                 <ChildProps text="Ini dibuat dengan PROPS 2, Supaya lebih dinamis" />
                 <ChildProps text="Ini dibuat dengan PROPS 3, Supaya lebih dinamis" />
+                <br />
+                {this.state.counter}
+            
             </div> // Didalam return hanya ada satu div. Cara mengakalinnya seperti ini
            
         ) // Bila Component lebih dari satu baris harus menggunakan Dalam kurung
