@@ -1,3 +1,5 @@
+// Contoh membuat component react yang berbeda dari file mine.js
+
 var Greeter = React.createClass({
       // bila propsnya belum terdefinisi maka defaultnya adalah ini
       getDefaultProps: function(){
