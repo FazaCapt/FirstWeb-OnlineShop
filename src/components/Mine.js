@@ -10,9 +10,12 @@ class Mine extends Component { // Membuat class component
         super()
         this.state = {texts:[]}
     }
-    render() {
-        this.setState({texts:['Belajar ReactJS', 'Belajar NodeJS', 'Belajar ExpressJS']});
 
+    componentDidMount() {
+        this.setState({texts:['Belajar ReactJS', 'Belajar NodeJS', 'Belajar ExpressJS']});
+    }
+    render() {
+        
         let texts = this.state.texts.map(function(text){
             return (
                 <ChildProps text= {text} />
